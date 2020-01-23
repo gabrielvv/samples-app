@@ -35,3 +35,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Links
+
+- https://medium.com/js-dojo/how-to-build-an-spa-using-vue-js-vuex-vuetify-and-firebase-using-vue-router-fc5bd065fe18
+- https://garywoodfine.com/using-vuex-and-vue-router-in-a-vue-project/

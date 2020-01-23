@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import { vuexfireMutations, firestoreAction } from 'vuexfire';
 import db from './db';
+import { uiModule } from './modules/ui';
 
 Vue.use(Vuex);
 
@@ -20,5 +21,8 @@ export default new Vuex.Store<StoreState>({
   mutations: vuexfireMutations,
   actions: {
     bindSamples: firestoreAction(({ bindFirestoreRef }) => bindFirestoreRef('samples', db.collection('samples'))),
+  },
+  modules: {
+    ui: uiModule,
   },
 });

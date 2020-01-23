@@ -1,58 +1,29 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
+    <core-drawer />
+    <core-toolbar />
     <v-content>
-      <div>{{samples}}</div>
+      <router-view />
     </v-content>
+    <!-- <core-footer /> -->
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
-// import HelloWorld from './components/HelloWorld.vue';
+import CoreToolbar from '@/components/core/Toolbar.vue';
+import CoreFooter from '@/components/core/Footer.vue';
+import CoreDrawer from '@/components/core/Drawer.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    // HelloWorld,
+    CoreDrawer,
+    // eslint-disable-next-line vue/no-unused-components
+    CoreFooter,
+    CoreToolbar,
   },
 
   computed: mapState(['samples']),
