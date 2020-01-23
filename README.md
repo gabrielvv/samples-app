@@ -1,6 +1,8 @@
 # samples-app
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
+Project bootstrapped with those commands: https://gist.github.com/gabrielvv/4eace8cbe741c2025be2cdad42544e14
+
 ## Project setup
 ```
 npm install
