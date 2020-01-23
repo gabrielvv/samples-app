@@ -38,21 +38,30 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <div>{{samples}}</div>
     </v-content>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { mapState, mapActions } from 'vuex';
+// import HelloWorld from './components/HelloWorld.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld,
+    // HelloWorld,
   },
+
+  computed: mapState(['samples']),
+
+  created() {
+    this.bindSamples();
+  },
+
+  methods: mapActions(['bindSamples']),
 
   data: () => ({
     //

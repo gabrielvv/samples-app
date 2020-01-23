@@ -1,15 +1,24 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { vuexfireMutations, firestoreAction } from 'vuexfire';
+import db from './db';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export interface Sample {
+  id: String
+}
+
+export interface StoreState {
+  samples: Array<Sample>
+}
+
+export default new Vuex.Store<StoreState>({
   state: {
+    samples: [],
   },
-  mutations: {
-  },
+  mutations: vuexfireMutations,
   actions: {
-  },
-  modules: {
+    bindSamples: firestoreAction(({ bindFirestoreRef }) => bindFirestoreRef('samples', db.collection('samples'))),
   },
 });
