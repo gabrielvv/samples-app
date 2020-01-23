@@ -36,6 +36,14 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### TODO
+
+- offline mode
+- SEO
+- asm
+- CI/CD
+- Search with Algolia
+
 ### Links
 
 - https://medium.com/js-dojo/how-to-build-an-spa-using-vue-js-vuex-vuetify-and-firebase-using-vue-router-fc5bd065fe18

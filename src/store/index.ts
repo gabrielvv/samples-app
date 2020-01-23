@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import { vuexfireMutations, firestoreAction } from 'vuexfire';
 import db from './db';
 import { uiModule } from './modules/ui';
+import { authModule } from './modules/auth';
 
 Vue.use(Vuex);
 
@@ -24,5 +25,6 @@ export default new Vuex.Store<StoreState>({
   },
   modules: {
     ui: uiModule,
+    auth: authModule,
   },
 });
