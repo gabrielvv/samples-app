@@ -1,27 +1,38 @@
+/* eslint-disable import/no-duplicates */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import { RouteConfig, Route } from 'vue-router';
+import Home from '@/views/Home.vue';
+import store from '@/store';
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: '/',
-    name: 'home',
     component: Home,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    children: [
+      {
+        path: '/',
+        component: () => import(/* webpackChunkName: "login" */ '@/views/app/Samples.vue'),
+      },
+    ],
+    meta: { requiresAuth: true },
   },
   {
     path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue'),
+    props: route => ({ redirect: (route as Route).query.redirect }),
+    component: () => import(/* webpackChunkName: "login" */ '@/views/Login.vue'),
+    meta: { isForGuestOnly: true },
+  },
+  {
+    path: '/logout',
+    beforeEnter: (to, from, next) => {
+      store.dispatch('logout')
+        .finally(() => next({
+          path: '/login',
+        }));
+    },
   },
 ];
 
@@ -29,6 +40,33 @@ const router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    store.dispatch('login').then(({ isAuthenticated }) => {
+      if (isAuthenticated) {
+        next();
+      } else {
+        next({
+          path: '/login',
+          query: { redirect: to.fullPath },
+        });
+      }
+    });
+  } else if (to.matched.some(record => record.meta.isForGuestOnly)) {
+    store.dispatch('login').then(({ isAuthenticated }) => {
+      if (!isAuthenticated) {
+        next();
+      } else {
+        next({
+          path: '/',
+        });
+      }
+    });
+  } else {
+    next();
+  }
 });
 
 export default router;

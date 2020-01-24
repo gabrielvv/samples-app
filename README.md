@@ -43,8 +43,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - asm
 - CI/CD
 - Search with Algolia
+- Plug'N Play FirebaseUI Auth with vuex/vue router (publish on npm)
+- Dark Mode
 
 ### Links
 
+- [Firebase Auth API](https://firebase.google.com/docs/reference/js/firebase.auth.Auth)
 - https://medium.com/js-dojo/how-to-build-an-spa-using-vue-js-vuex-vuetify-and-firebase-using-vue-router-fc5bd065fe18
 - https://garywoodfine.com/using-vuex-and-vue-router-in-a-vue-project/

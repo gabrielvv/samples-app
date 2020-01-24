@@ -1,18 +1,26 @@
 <template>
-  <v-container class="fill-height">
-    <v-layout wrap>
-      <v-flex v-for="n in 12" :key="n" xs4>
-        <base-card class="ma-5"/>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-app>
+    <core-drawer />
+    <core-toolbar />
+    <v-content>
+      <router-view />
+    </v-content>
+  </v-app>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue';
+import { mapState, mapActions } from 'vuex';
+import CoreToolbar from '@/components/core/Toolbar.vue';
+import CoreDrawer from '@/components/core/Drawer.vue';
+
+export default Vue.extend({
   name: 'Home',
-  metaInfo: {
-    title: 'Home | Samples.io',
+
+  components: {
+    CoreDrawer,
+    CoreToolbar,
   },
-};
+
+});
 </script>
