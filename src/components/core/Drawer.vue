@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer v-model="drawer" v-on:input="toggleDrawer" app :mini-variant.sync="mini">
+  <v-navigation-drawer
+    v-model="drawer"
+    v-on:input="toggleDrawer"
+    app
+    :mini-variant.sync="mini"
+    v-on:update:mini-variant="toggleMini">
     <v-list dense>
       <router-link v-for="item in items" v-bind:to="item.to" :key="item.to">
         <v-list-item link>
@@ -17,7 +22,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
+import store from '@/store';
 import { UiModuleState } from '@/store/modules/ui';
 
 export default Vue.extend({
@@ -28,7 +34,12 @@ export default Vue.extend({
     mini: state => (state as { ui: UiModuleState }).ui.drawer.mini,
   }),
   methods: {
-    ...mapMutations(['toggleDrawer']),
+    toggleDrawer(input: Boolean) {
+      store.commit('toggleDrawer', input);
+    },
+    toggleMini(input: Boolean) {
+      store.commit('toggleMini', input);
+    },
   },
 });
 </script>

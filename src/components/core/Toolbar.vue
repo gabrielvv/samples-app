@@ -17,7 +17,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { mapMutations, mapGetters, mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
+import store from '@/store';
 
 export default Vue.extend({
   name: 'CoreToolbar',
@@ -25,6 +26,10 @@ export default Vue.extend({
     ...mapGetters(['currentUser']),
     ...mapState(['appName']),
   },
-  methods: mapMutations(['toggleDrawer']),
+  methods: {
+    toggleDrawer() {
+      store.commit('toggleDrawer');
+    },
+  },
 });
 </script>

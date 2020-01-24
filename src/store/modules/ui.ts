@@ -33,12 +33,18 @@ export const uiModule: Module<UiModuleState, any> = {
     },
   },
   mutations: {
+    toggleMini: (state, mini) => {
+      state.drawer.mini = mini || !state.drawer.mini;
+      // console.log('toggleMini', state.drawer.open, state.drawer.mini);
+    },
     toggleDrawer: (state, drawer) => {
       const breakpointName = (vuetify as unknown as { framework: any }).framework.breakpoint.name;
       switch (breakpointName) {
         case 'xs':
         case 'sm':
           state.drawer.open = drawer || !state.drawer.open;
+          // disable mini-variant in small screens
+          state.drawer.mini = false;
           break;
         case 'md':
         case 'lg':
@@ -46,7 +52,6 @@ export const uiModule: Module<UiModuleState, any> = {
         default:
           state.drawer.mini = !state.drawer.mini;
       }
-      console.log('toggleDrawer', state.drawer.open, state.drawer.mini);
     },
 
   },
